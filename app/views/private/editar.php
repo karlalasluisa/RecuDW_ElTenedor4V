@@ -18,11 +18,11 @@ if (!isset($_SESSION["email"])) {
 
 $restaurante = $_restauranteController->obtenerPorId($_GET["id"]);
 
-$valueName = $restaurante->getName();
-$valueImage = $restaurante->getImage();
-$valueMenu = $restaurante->getMenu();
-$valueMayorprice = $restaurante->getMayorprice();
-$valueMinorprice = $restaurante->getMinorprice();
+$name = $restaurante->getName();
+$image = $restaurante->getImage();
+$menu = $restaurante->getMenu();
+$mayorprice = $restaurante->getMayorprice();
+$minorprice = $restaurante->getMinorprice();
 $idCategory = $restaurante->getIdCategory();
 ?>
 
@@ -76,26 +76,26 @@ $idCategory = $restaurante->getIdCategory();
                     Nombre
                 </label>
                 <div class="col-10">
-                    <input type="text" class="form-control" name="name" id="name" value=" <?php echo $valueName ?>" placeholder="Nombre">
+                    <input type="text" class="form-control" name="name" id="name" value=" <?php echo $name ?>" placeholder="Nombre">
                 </div>
             </div>
             <div class="row p-3">
                 <label for="cover" class="col-2 col-form-label">URL Imagen</label>
                 <div class="col-10">
-                    <input type="text" class="form-control" id="picture" name="picture" value=" <?php echo $valueImage ?>" placeholder="Picture">
+                    <input type="text" class="form-control" id="picture" name="picture" value=" <?php echo $image ?>" placeholder="Picture">
                 </div>
             </div>
             <div class="row p-3">
                 <label for="description" class="col-2 col-form-label">Menu</label>
                 <div class="col-10">
                     <textarea class="form-control" id="menu" name="mane"  style="height: 100px"
-                              placeholder="menu"><?php echo $valueMenu ?></textarea>
+                              placeholder="menu"><?php echo $menu ?></textarea>
                 </div>
             </div>
             <div class="row p-3">
                 <label for="price" class="col-2 col-form-label">Precio</label>
                 <div class="col-10">
-                    <input type="text" class="form-control" id="price" name="price" value=" <?php echo $valueMinorprice . "-" . $valueMayorprice ?>" placeholder="Price">
+                    <input type="text" class="form-control" id="price" name="price" value=" <?php echo $minorprice . "-" . $mayorprice ?>" placeholder="Price">
                 </div>
             </div>
             <label for="opciones">Seleccione una opción:</label>

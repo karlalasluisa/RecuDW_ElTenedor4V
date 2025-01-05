@@ -25,7 +25,7 @@ if (isset($_GET["buscador"])) {
         <meta name="description" content="">
         <meta name="author" content="">
         <title>El Tenedor 4V</title>
-        <!-- Bootstrap Core CSS -->
+        <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <!-- Iconos -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -47,7 +47,7 @@ if (isset($_GET["buscador"])) {
                     </ul>
                     <form class="d-flex" id="form-login" method="POST" action="../../controllers/AuthController.php">
                         <input type="hidden" name="type" value="logout">
-                        <button class="btn btn-outline-success d-flex align-items-center" type="submit" id="btn-login"><i class="bi bi-door-open px-1"></i> logout</button>
+                        <button class="btn btn-outline-success d-flex align-items-center" type="submit" id="btn-login"><i class="bi bi-door-open px-1"></i>Logout</button>
                     </form>
                 </div>
             </div>
@@ -83,7 +83,7 @@ if (isset($_GET["buscador"])) {
 
                 <?php
                 if (count($listaRestaurantes) == 0) {
-                    echo "<h4 class='text-center mt-2 text-danger'>ACTUALMENTE NO TENEMOS NINGUN RESTAURANTE</h4>";
+                    echo "<h4 class='text-center mt-2 text-danger'>No tenemos restaurantes aún</h4>";
                 }
 
                 foreach ($listaRestaurantes as $restaurante) {
