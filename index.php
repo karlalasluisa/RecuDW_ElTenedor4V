@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edit this template
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+<?php
+require_once 'utils/SessionUtils.php';
+SessionUtils::startSessionIfNotStarted();
+
+if (isset($_SESSION["email"])) {
+        header("Location: app/views/private/index.php");
+
+} else {
+    header("Location: app/views/public/index.php");
+}
+?>

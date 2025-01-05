@@ -39,7 +39,7 @@ $comensales = isset($_GET['comensales']) ? $_GET['comensales'] : '';
             } elseif ($error == 'horaInvalida') {
                 echo "La hora debe ser '14:00' o '21:00'.";
             } elseif ($error == 'comensalesInvalidos') {
-                echo "El número de comensales debe ser un número positivo.";
+                echo "El número de comensales es inválido";
             } elseif ($error == 'dbError') {
                 echo "Hubo un error al registrar la reserva. Intenta de nuevo.";
             }
@@ -74,22 +74,13 @@ $comensales = isset($_GET['comensales']) ? $_GET['comensales'] : '';
                 <label for="comensales" class="form-label">Número de comensales</label>
                 <input type="number" class="form-control <?php echo ($error == 'comensalesInvalidos') ? 'is-invalid' : ''; ?>" id="comensales" name="comensales" value="<?php echo htmlspecialchars($comensales); ?>" min="1" required>
                 <?php if ($error == 'comensalesInvalidos'): ?>
-                    <div class="invalid-feedback">El número de comensales debe ser un número positivo.</div>
+                    <div class="invalid-feedback">El número de comensales debe ser un número positivo y menor a 30 .</div>
                 <?php endif; ?>
             </div>
             <button type="submit" class="btn btn-primary">Realizar reserva</button>
         </form>
 
     </div>
-
-    <!-- Footer -->
-    <footer class="footer mt-5 bg-light">
-        <div class="text-center py-3">
-            <span>&copy; Cuatrovientos</span>
-        </div>
-    </footer>
-
-    <!-- JS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 

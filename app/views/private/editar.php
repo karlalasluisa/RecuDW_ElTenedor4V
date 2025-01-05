@@ -38,7 +38,7 @@ $idCategory = $restaurante->getIdCategory();
         <meta name="author" content="">
         <title>Desarrollo web PHP</title>
 
-        <!-- Bootstrap Core CSS -->
+        <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <!-- Iconos -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -62,14 +62,14 @@ $idCategory = $restaurante->getIdCategory();
                     </ul>
                     <form class="d-flex" id="form-login" method="POST" action="../../controllers/LoginController.php">
                         <input type="hidden" name="type" value="logout">
-                        <button class="btn btn-outline-success d-flex align-items-center" type="submit" id="btn-login"><i class="bi bi-door-open px-1"></i> LOGOUT</button>
+                        <button class="btn btn-outline-success d-flex align-items-center" type="submit" id="btn-login"><i class="bi bi-door-open px-1"></i> Logout</button>
                     </form>
                 </div>
             </div>
         </nav>
 
-        <!-- FORMULARIO DE INSERCIÓN -->
-        <h1>EDITAR RESTAURANTE</h1>
+        <!-- FORM EDITAR -->
+        <h3 class="text-center mt-4">EDITAR RESTAURANTE</h3 >
         <form class="container" method="POST" action="../../controllers/RestauranteController.php">
             <div class="row p-3">
                 <label for="name" class="col-2 col-form-label">
@@ -98,7 +98,7 @@ $idCategory = $restaurante->getIdCategory();
                     <input type="text" class="form-control" id="price" name="price" value=" <?php echo $minorprice . "-" . $mayorprice ?>" placeholder="Price">
                 </div>
             </div>
-            <label for="opciones">Seleccione una opción:</label>
+            <label for="opciones">Categoría:</label>
 
             <select id="opciones" name="opciones">
                 <?php
@@ -115,7 +115,7 @@ $idCategory = $restaurante->getIdCategory();
 
             <div class="row p-3">
                 <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-success" id="boton_crear">EDITAR</button>
+                    <button type="submit" class="btn btn-success" id="boton_crear">ACEPTAR</button>
                 </div>
             </div>
             <input type="hidden" name="action" value="edit">
@@ -131,12 +131,6 @@ if (isset($_GET["error"]) && $_GET["error"] == "rangoIncorrecto") {
     echo "<b>RANGO INCORRECTO</b>";
 }
 ?>
-        <!-- FIN DEL FORMULARIO  -->
-
-        <footer class="">
-            Cuatrovientos  - Desarrollo de Interfaces
-        </footer>
-
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

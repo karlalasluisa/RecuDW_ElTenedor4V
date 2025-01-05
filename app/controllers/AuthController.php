@@ -21,6 +21,11 @@ class AuthController {
         
         // Buscar usuario en la base de datos
         $user = $userDAO->findByEmail($email);
+        
+        if ($user == null){
+            header('Location: ../views/public/index.php?error=UsuarioIncorrecto');
+            exit();
+        }
 
         if ($user->verifyPassword($password)) {
             // Iniciar sesión y guardar datos
@@ -30,6 +35,9 @@ class AuthController {
             header("Location: ../../index.php");
             exit();
             return true;
+        }else{
+            header('Location: ../views/public/index.php?error=ContraseñaIncorrecta');
+            exit();
         }
         return false;
     }

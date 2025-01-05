@@ -6,14 +6,9 @@ class CategoriaController {
 
     public function __construct() {
 
-        
-
     }
-    
     function obtenerCategorias() {
-            $categoriaDAO = new CategoriaDAO();
-            return $categoriaDAO->selectTodasLasCategorias();
-        }
+        $categoriaDAO = new CategoriaDAO();
+        return $categoriaDAO->selectTodasLasCategorias();
+    }
 }
-
-?>

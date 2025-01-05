@@ -2,12 +2,13 @@
 require_once(dirname(__FILE__) . '\..\..\controllers\RestauranteController.php');
 $restauranteController = new RestauranteController();
 $listaRestaurantes = $restauranteController->obtenerRestaurantes();
+$error = isset($_GET['error']) ? $_GET['error'] : null;
 
 if (isset($_GET["buscador"])) {
     $listaRestaurantes = $restauranteController->obtenerRestaurantesFiltrados($_GET["buscador"]);
 }
-$isLoggedIn = isset($_SESSION['username']);
-$username = $isLoggedIn ? $_SESSION['username'] : null;
+$isLoggedIn = isset($_SESSION['email']);
+$email = $isLoggedIn ? $_SESSION['email'] : null;
 ?>
 
 <!DOCTYPE html>
@@ -36,12 +37,24 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+                <?php
+                    if ($error) {
+                        echo "<div class='alert alert-danger m-2' role='alert'>";
+                    if ($error == 'ContraseñaIncorrecta') {
+                        echo "La contraseña es incorrecta";
+                    } elseif ($error == 'UsuarioIncorrecto') {
+                        echo "El usuario es incorrecto";
+                    }
+                    echo "</div>";
+                    }
+                ?>
                 <?php if ($isLoggedIn): ?>
                     <div class="d-flex align-items-center">
-                        <span class="me-3">Bienvenido, <?= htmlspecialchars($username); ?></span>
+                        <span class="me-3">Bienvenido, <?= $email; ?></span>
                         <a class="btn btn-outline-danger" href="../../controllers/AuthController.php?type=logout">
-                            <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                            <i class="bi bi-box-arrow-right"></i> Logout
                         </a>
                     </div>
                 <?php else: ?>
@@ -50,7 +63,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
                         <input class="form-control me-2" type="password" placeholder="Contraseña" name="password" required>
                         <input type="hidden" name="type" value="login">
                         <button class="btn btn-outline-success" type="submit">
-                            <i class="bi bi-door-open"></i> Iniciar sesión
+                            <i class="bi bi-door-open"></i> Acceder
                         </button>
                     </form>
                 <?php endif; ?>
@@ -66,7 +79,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
                 <img class="img-fluid rounded" src="./assets/img/logo.png" alt="">
             </div>
             <div class="col">
-                <h1 class="display-3">Descubra y reserva el mejor restaurante</h1>
+                <h1 class="display-4">Descubra y reserva el mejor restaurante</h1>
                 <p class="lead">una aplicación de 4Vientos.</p>
                 <form class="input-group" method="GET" action="./index.php">
                     <input name="buscador" class="form-control" />
@@ -77,47 +90,39 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
     </div>
 
     <!-- Content Row -->
-    <div class="container mtop-5">
-        <div class="row">
-
+    <div class="container mt-5">
+        <div class="row g-4">
             <?php
-            if (count($listaRestaurantes) == 0) {
-                echo "<h4 class='text-center mt-2 text-danger'>ACTUALMENTE NO TENEMOS NINGUN RESTAURANTE</h4>";
-            }
-
-            foreach ($listaRestaurantes as $restaurante) {
-                echo '<div class="col-12 col-md-6 col-lg-4">';
-                echo '<div class="card h-100">';
-                echo '<img class="card-img-top" src="' . $restaurante->getImage() . '">';
-                echo '<div class="card-body">';
-                echo '<span class="badge bg-primary">' . $restaurante->getMinorprice() . '-' . $restaurante->getMayorprice() . ' €</span>';
-                echo '<h4 class="card-title">' . $restaurante->getName() . '</h4>';
-                echo '<p class="card-text">';
-                echo $restaurante->getMenu();
-                echo '</p>';
+            if (count($listaRestaurantes) === 0) {
+                echo '<div class="col-12">';
+                echo '<h4 class="text-center text-danger mt-2">ACTUALMENTE NO TENEMOS NINGÚN RESTAURANTE</h4>';
                 echo '</div>';
+            } else {
+                foreach ($listaRestaurantes as $restaurante) {
+                    echo '<div class="col-12 col-md-6 col-lg-4">';
+                    echo '<div class="card h-100">';
+                    echo '<img src="' . $restaurante->getImage() . '" class="card-img-top" alt="Imagen de ' . $restaurante->getName() . '">';
+                    echo '<div class="card-body">';
+                    echo '<span class="badge bg-primary">' . $restaurante->getMinorprice() . '-' . $restaurante->getMayorprice() . ' €</span>';
+                    echo '<h4 class="card-title mt-2">' . $restaurante->getName() . '</h4>';
+                    echo '<p class="card-text">' . $restaurante->getMenu() . '</p>';
+                    echo '</div>';
 
-                // Si el usuario no está logeado, mostrar el botón de reserva
-                if (!$isLoggedIn) {
-                    echo '<div class="card-footer d-flex justify-content-center">';
-                    echo '<a href="reserva.php?id=' . $restaurante->getId() . '" class="btn btn-primary">Reservar</a>';
+                    if (!$isLoggedIn) {
+                        echo '<div class="card-footer text-center">';
+                        echo '<a href="reserva.php?id=' . $restaurante->getId() . '" class="btn btn-primary">Reservar</a>';
+                        echo '</div>';
+                    }
+
+                    echo '</div>';
                     echo '</div>';
                 }
-
-                echo '</div>';
-                echo '</div>';
             }
             ?>
-
         </div>
     </div>
-    </div>
 
-    <footer class="footer">
-        <div class="">
-            <span class=""> Cuatrovientos </span>
-        </div>
-    </footer>
+    </div>
     <!-- JS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

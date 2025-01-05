@@ -108,7 +108,7 @@ class RestauranteDAO {
     }
     
     public function selectRestauranteByCategoria($idcategoria) {
-        $query = "SELECT * FROM " . self::RESTAURANTE_TABLE . " where idCategory=?";
+        $query = "SELECT * FROM " . self::RESTAURANTE_TABLE . " where id=?";
         $stmt = mysqli_prepare($this->conex, $query);
         mysqli_stmt_bind_param($stmt, "i", $idcategoria);
         mysqli_stmt_execute($stmt);

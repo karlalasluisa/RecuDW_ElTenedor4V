@@ -62,7 +62,7 @@ if (isset($_GET["buscador"])) {
                     <img class="img-fluid rounded" src="./assets/img/logo.png" alt="">
                 </div>
                 <div class="col">
-                    <h1 class="display-3">Descubra y reserva el mejor restaurante</h1>
+                    <h1 class="display-4">Descubra y reserva el mejor restaurante</h1>
                     <p class="lead">una aplicación de 4Vientos.</p>
                     <form class="input-group" method="GET" action="./index.php">
                         <input name="buscador" class="form-control" />
@@ -114,12 +114,6 @@ if (isset($_GET["buscador"])) {
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="">
-            <span class=""> Cuatrovientos </span>
-        </div>
-    </footer>
-    <!-- JS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </body>
